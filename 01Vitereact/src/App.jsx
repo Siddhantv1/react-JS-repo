@@ -3,7 +3,7 @@
 function App() {
   return (
     <h1>
-     Siddhant Ojha | chai aur React with Vite
+     Siddhant Ojha | 
     </h1>
   )
 }
