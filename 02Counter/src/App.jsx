@@ -1,19 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
 
+  let counter = 6;
   const addval=() => {
-    console.log("value add");
+    counter = counter +1;
   }
   
   const subval = () => {
-    console.log("valei sub");
+    console.log("valei sub", Math.random());
   }
 
-  let counter = 6
+
 
   return (
     <>
