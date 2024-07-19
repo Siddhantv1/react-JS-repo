@@ -11,12 +11,16 @@ function App() {
   let [counter, setCounter] = useState(6)
 
   const addval=() => {
+
     counter = counter +1;
-    setCounter(counter)
+    setCounter(counter);
+
     console.log("value added", counter);
   }
   
   const subval = () => {
+    counter = counter -1;
+    setCounter(counter)
     console.log("value subbed", Math.random());
   }
 
