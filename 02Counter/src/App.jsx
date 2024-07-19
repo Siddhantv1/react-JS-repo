@@ -24,7 +24,8 @@ function App() {
     console.log("value subbed", Math.random());
   }
 
-
+//this method is much MUCH better than DOM changes in usual javascript, 
+//hence this is why React was loved when it was introduced
 
   return (
     <>
