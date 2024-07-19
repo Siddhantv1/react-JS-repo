@@ -8,7 +8,11 @@ function App() {
 
   return (
     <>
-     
+     <h1>Siddhant Ojha</h1>
+     <h2>Counter value: 6</h2>
+     <button>add value</button>
+     <br/>
+     <button>subtract value</button>
     </>
   )
 }
