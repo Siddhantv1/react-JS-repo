@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-     <h1>Siddhant Ojha</h1>
+     <h1>Count Away!</h1>
      <h2>Counter value: {counter}</h2>
 
      <button 
