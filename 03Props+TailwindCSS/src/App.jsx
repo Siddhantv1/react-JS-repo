@@ -11,7 +11,7 @@ function App() {
       <h1 className='bg-yellow-600 text-black p-4 rounded-xl mb-4'> Siddhant Ojha </h1>
 
       <Card hacker="Siddhant Ojha" codeName ="darkblueowl"/>
-
+      <Card hacker="Anderson" codeName="Neo"/>
     </>
   )
 }
