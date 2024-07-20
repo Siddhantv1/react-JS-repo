@@ -12,6 +12,7 @@ function App() {
 
       <Card hacker="Siddhant Ojha" codeName ="darkblueowl"/>
       <Card hacker="Anderson" codeName="Neo"/>
+      <Card codeName="Him"/>
     </>
   )
 }
