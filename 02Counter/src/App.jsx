@@ -8,7 +8,7 @@ function App() {
   //changes are propagated from CODE or DOM to UI, using usestate hook
   //the method, a convention, to set the useState is a constant/variating array, which holds 2 values
   // first value is the counter, and second :  setCounter is a function responible to change the counter variable
-  let [counter, setCounter] = useState(6)
+  let [counter, setCounter] = useState(0)
 
   const addval=() => {
 
