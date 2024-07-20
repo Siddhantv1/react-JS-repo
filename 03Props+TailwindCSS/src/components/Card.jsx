@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Card({codeName}) {
+function Card({codeName, hacker}) {
   console.log(codeName);
     return (
         <>
@@ -12,13 +12,12 @@ function Card({codeName}) {
   />
   <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
   <div class="absolute bottom-4 left-4 text-left">
-    <h1 class="text-lg font-semibold text-white">Delba</h1>
+    <h1 class="text-lg font-semibold text-white">{codeName}</h1>
     <p class="mt-2 text-sm text-gray-300">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-      debitis?
+    profile name: {hacker}
     </p>
     <button class="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-      View Profile →
+    
     </button>
   </div>
 </div>
