@@ -28,7 +28,7 @@ The algorithm, which React uses to differentiate one Tree with another to identi
  Instead of Saving -> then updating, it simply re-rendering the site. ✅saves memory
 
 
- ### Props in React:-
+# 🌟Props in React:-
   Props is a method, known as properties, which is made for reusability of components or divs and things into the site source
 
   even, we can customize the props, in such a way that each component of the Same type, would include a different set of values and data
@@ -36,4 +36,34 @@ The algorithm, which React uses to differentiate one Tree with another to identi
 
    > here's how to do it:
 
-   <Card/>
+into the 📁 ==`App.jsx`==, you already called a `Card` as an **HTML element** , 
+
+   `<Card/>`
+
+now you may define new variables and give them their separate values
+
+`<Card hacker="Siddhant Ojha" codeName ="darkblueowl"/>`
+`<Card hacker="Vergil" codeName ="cryingDevil"/>`
+
+> and within the 📁 ==`Card.jsx`== , you add the definition with passing a `props` into the `Card` function
+
+```
+function Card(props) {
+
+  console.log(props.codeName);
+  }
+```
+
+this is how you can access it. 
+
+> [!💡you can also access the file `codeNames` directly by injecting JavaScript into the📁 ==`Card.jsx`== file.]
+> 
+
+```
+function Card({codeName}) {
+
+  console.log(codeName);
+  }
+```
+
+> ~and thus~ now your React ==`App.jsx`== can now do callbacks to data stored within each different cards and their respective variables.
