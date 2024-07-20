@@ -28,4 +28,5 @@ The algorithm, which React uses to differentiate one Tree with another to identi
  Instead of Saving -> then updating, it simply re-rendering the site. ✅saves memory
 
 
- 
+ ### Props in React:-
+  Props is a method, known as properties, which is made for reusability of components or divs and things into the site source
