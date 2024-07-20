@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Card(props) {
-  console.log(props.codeName);
+function Card({codeName}) {
+  console.log(codeName);
     return (
         <>
            <div class="relative h-[400px] w-[300px] rounded-md">
