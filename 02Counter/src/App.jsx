@@ -19,8 +19,8 @@ function App() {
   }
   
   const subval = () => {
-    counter = counter -1;
-    setCounter(counter)
+    // counter = counter -1;
+    setCounter(counter - 1)
     console.log("value subbed", Math.random());
   }
 
