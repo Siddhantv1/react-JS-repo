@@ -33,3 +33,7 @@ The algorithm, which React uses to differentiate one Tree with another to identi
 
   even, we can customize the props, in such a way that each component of the Same type, would include a different set of values and data
    (e.g. : stories of different people on Instagram)
+
+   > here's how to do it:
+
+   <Card/>
