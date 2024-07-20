@@ -13,7 +13,8 @@ function App() {
   const addval=() => {
 
     // counter = counter +1;
-    setCounter(counter + 1);
+    setCounter(counter => counter + 1);
+
 
     console.log("value added", counter);
   }
