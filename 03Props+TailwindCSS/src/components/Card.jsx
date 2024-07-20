@@ -14,10 +14,10 @@ function Card({codeName, hacker}) {
   <div class="absolute bottom-4 left-4 text-left">
     <h1 class="text-lg font-semibold text-white">{codeName}</h1>
     <p class="mt-2 text-sm text-gray-300">
-    profile name: {hacker}
+    profile name: {hacker || "Unknown"}
     </p>
     <button class="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-    
+    Go to Profile -
     </button>
   </div>
 </div>
