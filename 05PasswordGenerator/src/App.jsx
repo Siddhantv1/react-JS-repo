@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore } from 'react'
+import { useState, useCallback } from 'react'
 import './App.css'
 
 function App() {
