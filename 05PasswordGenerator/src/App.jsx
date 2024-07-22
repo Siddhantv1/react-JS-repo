@@ -1,14 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useSyncExternalStore } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [length, setLength] = useState(8)
+  const [numallow, setnumallow] = useState(false);  //checkbox for nums
+  const [charac, setcharac] = useState(false);  //checkbox for special characs
+  const [Password, setPassword] = useState("")  //starting string
+
+
+  //password generator code {using useCallback function}
+  const passwordGenerator = () => {}
 
   return (
     <>
     <h1 className='text-4xl text-center text-white'> Password Generator  </h1>
+
    </>
   )
 }
