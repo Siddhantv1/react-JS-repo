@@ -9,7 +9,22 @@ function App() {
 
 
   //password generator code {using useCallback function}
-  const passwordGenerator = useCallback(() => {}, [length, numallow, charac, setPassword])
+  const passwordGenerator = useCallback(() => {
+    let passwd = ""
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+    //define what happens if numbers are checkboxed
+    if (numallow){
+      str+= "0123456789"
+    }
+
+    //define what happens if special  characters are checkboxed
+    if(charac){
+      str+="!@#$%^&*()_+~`[]{}:;''<>,./?"
+    }
+
+
+  }, [length, numallow, charac, setPassword])
 
   return (
     <>
