@@ -23,6 +23,18 @@ function App() {
       str+="!@#$%^&*()_+~`[]{}:;''<>,./?"
     }
 
+    for(let i=1; i<=Array.length; i++){
+      let char = Math.floor(Math.random() *str.length + 1) // get index of random character from str
+
+      //insert it into the password passwd
+      passwd = str.charAt(char)
+    }
+
+    //setting the password
+    setPassword(passwd)
+
+   
+
 
   }, [length, numallow, charac, setPassword])
 
