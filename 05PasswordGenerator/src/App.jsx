@@ -9,7 +9,7 @@ function App() {
 
 
   //password generator code {using useCallback function}
-  const passwordGenerator = () => {}
+  const passwordGenerator = useCallback(fn, [length, numallow, charac, setPassword])
 
   return (
     <>
