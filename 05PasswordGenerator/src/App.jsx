@@ -7,6 +7,8 @@ function App() {
   const [charac, setcharac] = useState(false);  //checkbox for special characs
   const [Password, setPassword] = useState("")  //starting string
 
+    //useRef hook
+    const PasswordRef = useRef(null)
 
   //password generator code {using useCallback function}
   const passwordGenerator = useCallback(() => {
@@ -38,6 +40,12 @@ function App() {
 
   }, [length, numallow, charac, setPassword])
 
+  const copyPasswordToClipboard = useCallback(() => {
+    PasswordRef.current?.select();
+    PasswordRef.current?.setSelectionRange(0, 999);
+    window.navigator.clipboard.writeText(Password)
+  }, [Password])
+
   return (
     <>
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-7 my-8 text-orange-400 bg-black'>
@@ -51,14 +59,50 @@ function App() {
       placeholder='password'
       readOnly
       />
-
-      <button
-      className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0' 
-      >Copy
-
-      </button>
+        <button
+        onClick={copyPasswordToClipboard}
+        className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
+        >copy</button>
 
     </div>
+
+    <div className='flex text-sm gap-x-2'>
+      <div className='flex items-center gap-x1'>
+        <input
+          type='range'
+          min={6}
+          max={100}
+          value={length}
+          className='cursor-pointer'
+          onChange={(e) => {setLength(e.target.value)}}
+        />
+        <label>length: {length}</label>
+      </div>
+      <div className="flex items-center gap-x-1">
+      <input
+          type="checkbox"
+          defaultChecked={numallow}
+          id="numberInput"
+          onChange={() => {
+              setnumallow((prev) => !prev);
+          }}
+      />
+      <label htmlFor="numberInput">Numbers</label>
+      </div>
+      <div className="flex items-center gap-x-1">
+          <input
+              type="checkbox"
+              defaultChecked={charac}
+              id="characterInput"
+              onChange={() => {
+                  setcharac((prev) => !prev )
+              }}
+          />
+          <label htmlFor="characterInput">Characters</label>
+      </div>
+    </div>
+
+
   </div>
 
    </>
