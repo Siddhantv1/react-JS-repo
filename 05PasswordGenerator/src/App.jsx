@@ -7,8 +7,6 @@ function App() {
   const [charac, setcharac] = useState(false);  //checkbox for special characs
   const [Password, setPassword] = useState("")  //starting string
 
-    //useRef hook
-    const PasswordRef = useRef(null)
 
   //password generator code {using useCallback function}
   const passwordGenerator = useCallback(() => {
@@ -35,21 +33,19 @@ function App() {
     //setting the password
     setPassword(passwd)
 
-   
-
 
   }, [length, numallow, charac, setPassword])
 
-  const copyPasswordToClipboard = useCallback(() => {
-    PasswordRef.current?.select();
-    PasswordRef.current?.setSelectionRange(0, 999);
-    window.navigator.clipboard.writeText(Password)
-  }, [Password])
 
   return (
     <>
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-7 my-8 text-orange-400 bg-black'>
+    
+    {/* heading */}
     <h1 className='text-white text-center my-3'> Password Generator </h1>
+
+
+    {/* the input password box + the copy button*/}
     <div className=
     'className=""flex shadow rounded-lg overflow-hidden mb-4'>
 
@@ -59,13 +55,14 @@ function App() {
       placeholder='password'
       readOnly
       />
-        <button
-        onClick={copyPasswordToClipboard}
-        className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
-        >copy</button>
-
+      {/* the copy button */}
+      <button className='outline-none bg-blue-800 text-white px-3 py-0.5 shrink-0'>
+      Copy
+      </button>
     </div>
 
+    
+    {/* the length ranging bar */}
     <div className='flex text-sm gap-x-2'>
       <div className='flex items-center gap-x1'>
         <input
@@ -76,8 +73,12 @@ function App() {
           className='cursor-pointer'
           onChange={(e) => {setLength(e.target.value)}}
         />
-        <label>length: {length}</label>
+
+        <label>length: {length} </label>
       </div>
+
+
+    {/* the numbers div box */}
       <div className="flex items-center gap-x-1">
       <input
           type="checkbox"
@@ -89,6 +90,8 @@ function App() {
       />
       <label htmlFor="numberInput">Numbers</label>
       </div>
+
+      {/* the characters div */}
       <div className="flex items-center gap-x-1">
           <input
               type="checkbox"
