@@ -74,7 +74,8 @@ function App() {
       {/* the copy button */}
       <button 
       onClick={copythepassword}
-      className='outline-none bg-blue-800 text-white px-3 py-0.5 shrink-0'>
+      // styling for copy buttom
+      className='outline-none bg-blue-800 hover:bg-red-800  text-white px-3 py-0.5 shrink-0 transition-colors duration-200'>
       Copy
       </button>
     </div>
