@@ -27,7 +27,7 @@ function App() {
       let char = Math.floor(Math.random() *str.length + 1) // get index of random character from str
 
       //insert it into the password passwd
-      passwd = str.charAt(char)
+      passwd += str.charAt(char)
     }
 
     //setting the password
