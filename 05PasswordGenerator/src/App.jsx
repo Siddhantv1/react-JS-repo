@@ -23,7 +23,7 @@ function App() {
       str+="!@#$%^&*()_+~`[]{}:;''<>,./?"
     }
 
-    for(let i=1; i<=Array.length; i++){
+    for(let i=1; i<= length; i++){
       let char = Math.floor(Math.random() *str.length + 1) // get index of random character from str
 
       //insert it into the password passwd
@@ -37,6 +37,7 @@ function App() {
   }, [length, numallow, charac, setPassword])
 
 
+  passwordGenerator()
   return (
     <>
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-7 my-8 text-orange-400 bg-black'>
