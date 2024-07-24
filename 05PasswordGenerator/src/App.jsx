@@ -45,7 +45,7 @@ function App() {
 // plus optimised code by direct use of useCallback
   const copythepassword = useCallback(() => {
     window.navigator.clipboard.writeText(Password)
-    }, [Password, setPassword])
+    }, [Password])
 
 
   // use a useEffect so that our passwordGenerator() function can run successfully
