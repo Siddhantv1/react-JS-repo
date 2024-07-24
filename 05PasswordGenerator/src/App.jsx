@@ -36,13 +36,13 @@ function App() {
 
   }, [length, numallow, charac, setPassword])
 
-
+  // use a useEffect so that our passwordGenerator() function can run successfully
   useEffect(() => {
     passwordGenerator()
   }, [length, numallow, charac, passwordGenerator])
   return (
     <>
-    <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-7 my-8 text-orange-400 bg-black'>
+    <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-7 my-8 bg-black'>
     
     {/* heading */}
     <h1 className='text-white text-center my-3'> Password Generator </h1>
@@ -50,7 +50,7 @@ function App() {
 
     {/* the input password box + the copy button*/}
     <div className=
-    'className=""flex shadow rounded-lg overflow-hidden mb-4'>
+    'flex shadow rounded-lg overflow-hidden text-black mb-4'>
 
       <input type="text"
       value={Password}
