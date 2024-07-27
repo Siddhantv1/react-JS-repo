@@ -24,3 +24,5 @@ function useCurrencyInfo(currency) {
 }
 
 export default useCurrencyInfo;
+
+//and that's how you design a custom hook
