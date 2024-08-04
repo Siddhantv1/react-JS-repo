@@ -1,0 +1,2 @@
+semiBold - normal text
+Bold - DOCS text
