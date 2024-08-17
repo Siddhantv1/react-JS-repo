@@ -5,11 +5,17 @@
 
 @font-face {
   font-family: 'Gilroy';
-  src: url(assets/Gilroy-Black.ttf) format('truetype');
+  src: url('assets/Gilroy-SemiBold.woff')
+   format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 * {
   font-family: 'Gilroy', sans-serif;
+}
+
+
+::selection{
+  color: rgb(255, 196, 0);
 }
