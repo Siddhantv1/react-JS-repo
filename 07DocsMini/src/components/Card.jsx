@@ -1,11 +1,12 @@
-import React from 'react'
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-function Card({ data, reference }) {
+
+function Card({ data, setSelectedCardIndex, reference, index }) {
   return (
+    <div onClick={() => setSelectedCardIndex(index)} className="card-class">
     <motion.div drag dragConstraints={reference} whileDrag={{scale: 1.1}} className='relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden'>
       {/* // make cards */}
 
@@ -24,6 +25,7 @@ function Card({ data, reference }) {
 
         </div>
     </motion.div>
+    </div>
   )
 }
 
