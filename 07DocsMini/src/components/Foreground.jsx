@@ -31,20 +31,19 @@ function Foreground() {
   const addCard = () => {
     if (!showInput && !showConfirmation) {
       setShowInput(true);
-    } else if (showInput && !showConfirmation) {
-      setShowInput(false);
-      setShowConfirmation(true);
     }
   };
 
   const confirmCardCreation = () => {
-    const newCard = {
-      desc: newCardText,
-      filesize: "Unknown",
-      close: false,
-    };
-    setCardsData([...cardsData, newCard]);
-    resetState();
+    if (newCardText.trim() !== '') {
+      const newCard = {
+        desc: newCardText,
+        filesize: "Unknown",
+        close: false,
+      };
+      setCardsData([...cardsData, newCard]);
+      resetState();
+    }
   };
 
   const cancelCardCreation = () => {
@@ -76,57 +75,67 @@ function Foreground() {
   return (
     <div ref={ref} className='fixed z-[3] top-0 left-0 w-full h-full bg-sky-800/10 flex gap-5 flex-wrap p-5'>
       {cardsData.map((item, index) => (
-        <Card 
-          key={index} 
-          data={item} 
-          reference={ref} 
-          toggleCardSelection={toggleCardSelection} 
-          index={index} 
+        <Card
+          key={index}
+          data={item}
+          reference={ref}
+          toggleCardSelection={toggleCardSelection}
+          index={index}
           isSelected={selectedCardIndices.includes(index)}
         />
       ))}
-      
+
       {/* Input Dialog */}
       {showInput && (
-        <input
-          type="text"
-          value={newCardText}
-          onChange={(e) => setNewCardText(e.target.value)}
-          placeholder="Enter card description..."
-          className="absolute bottom-40 right-20 p-2 border rounded-lg"
-          autoFocus
-        />
-      )}
-
-      {/* Confirmation Buttons */}
-      {showConfirmation && (
-        <div className="absolute bottom-40 right-20 flex gap-2">
-          <button onClick={confirmCardCreation} className="text-xl rounded-full w-16 h-16 bg-green-500 text-white flex items-center justify-center cursor-pointer">
-            ✔
-          </button>
-          <button onClick={cancelCardCreation} className="text-xl rounded-full w-16 h-16 bg-red-600 text-white flex items-center justify-center cursor-pointer">
+        <div className="absolute bottom-40 right-20">
+          <input
+            type="text"
+            value={newCardText}
+            onChange={(e) => setNewCardText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') confirmCardCreation();
+            }}
+            placeholder="Add Note.."
+            className="p-2 border rounded-lg"
+            autoFocus
+          />
+          <button
+            onClick={cancelCardCreation}
+            className="absolute top-[-10px] right-[-10px] w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center"
+          >
             ✖
           </button>
         </div>
       )}
 
-      {/* Add Button */}
+      {/* Delete Button */}
       <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
-        <button onClick={addCard} className="text-3xl rounded-full w-16 h-16 bg-blue-500 text-white flex items-center justify-center">
+        <button
+          onClick={addCard}
+          className="text-3xl rounded-full w-16 h-16 bg-blue-500 text-white flex items-center justify-center"
+        >
           +
         </button>
 
-         {/* Delete Button */}
-      <button 
-        onClick={deleteSelectedCards} 
-        className={`text-xl rounded-full w-16 h-16 ${selectedCardIndices.length > 0 ? 'bg-red-800' : 'bg-gray-600'} text-white flex items-center justify-center cursor-pointer`}
-      >
-        <RiDeleteBin5Fill />
-      </button>
+        <button
+          onClick={deleteSelectedCards}
+          className={`text-xl rounded-full w-16 h-16 ${selectedCardIndices.length > 0 ? 'bg-red-800' : 'bg-gray-600'} text-white flex items-center justify-center cursor-pointer`}
+        >
+          <RiDeleteBin5Fill />
+        </button>
       </div>
+
+      {/* Cancel Button for Selected Cards */}
+      {selectedCardIndices.length > 0 && (
+        <button
+          onClick={() => setSelectedCardIndices([])}
+          className="fixed bottom-20 left-20 bg-blue-500 text-white px-4 py-2 rounded-full"
+        >
+          Cancel
+        </button>
+      )}
     </div>
   );
 }
-
 
 export default Foreground;
