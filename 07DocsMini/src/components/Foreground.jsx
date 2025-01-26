@@ -5,7 +5,7 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 function Foreground() {
   const ref = useRef(null);
 
-  const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+  const [selectedCardIndices, setSelectedCardIndices] = useState([]);
   const [cardsData, setCardsData] = useState([
     {
       desc: "This is the experiment, Walrider is coming, I want my money",
@@ -57,11 +57,19 @@ function Foreground() {
     setNewCardText('');
   };
 
-  const deleteCard = (indexToDelete) => {
-    if (selectedCardIndex === indexToDelete) {
-      const updatedCardsData = cardsData.filter((_, index) => index !== indexToDelete);
+  const toggleCardSelection = (index) => {
+    if (selectedCardIndices.includes(index)) {
+      setSelectedCardIndices(prev => prev.filter(i => i !== index));
+    } else {
+      setSelectedCardIndices(prev => [...prev, index]);
+    }
+  };
+
+  const deleteSelectedCards = () => {
+    if (selectedCardIndices.length > 0) {
+      const updatedCardsData = cardsData.filter((_, index) => !selectedCardIndices.includes(index));
       setCardsData(updatedCardsData);
-      setSelectedCardIndex(null);
+      setSelectedCardIndices([]);
     }
   };
 
@@ -72,9 +80,9 @@ function Foreground() {
           key={index} 
           data={item} 
           reference={ref} 
-          setSelectedCardIndex={setSelectedCardIndex} 
+          toggleCardSelection={toggleCardSelection} 
           index={index} 
-          isSelected={selectedCardIndex === index}
+          isSelected={selectedCardIndices.includes(index)}
         />
       ))}
       
@@ -108,10 +116,13 @@ function Foreground() {
           +
         </button>
 
-        {/* Remove Card Button */}
-        <button onClick={() => selectedCardIndex !== null && deleteCard(selectedCardIndex)} className={`text-xl rounded-full w-16 h-16 ${selectedCardIndex === null ? 'bg-gray-600' : 'bg-red-800'} text-white flex items-center justify-center cursor-pointer`}>
-          <RiDeleteBin5Fill />
-        </button>
+         {/* Delete Button */}
+      <button 
+        onClick={deleteSelectedCards} 
+        className={`text-xl rounded-full w-16 h-16 ${selectedCardIndices.length > 0 ? 'bg-red-800' : 'bg-gray-600'} text-white flex items-center justify-center cursor-pointer`}
+      >
+        <RiDeleteBin5Fill />
+      </button>
       </div>
     </div>
   );

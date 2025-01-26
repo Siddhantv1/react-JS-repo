@@ -3,7 +3,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-function Card({ data, setSelectedCardIndex, reference, index, isSelected }) {
+function Card({ data, toggleCardSelection, index, isSelected, reference }) {
   
   // Function to handle download
   const handleDownload = () => {
@@ -15,13 +15,28 @@ function Card({ data, setSelectedCardIndex, reference, index, isSelected }) {
   };
 
   return (
-    <div onClick={() => setSelectedCardIndex(index)} className="card-class">
-      <motion.div
-       drag dragConstraints={reference}
-       whileDrag={{scale: 1.1}}
-       className={`relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden ${
+    <div onClick={() => toggleCardSelection(index)} className="card-class">
+      <motion.div 
+        drag 
+        dragConstraints={reference} 
+        whileDrag={{scale: 1.1}} 
+        className={`relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden ${
           isSelected ? 'border-2 border-sky-300' : ''
-        }`}>
+        }`}
+      >
+      {/* Cancel Button */}
+      {isSelected && (
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleCardSelection(index);
+            }} 
+            className="absolute top-2 left-2 bg-blue-500 text-white px-2 py-1 rounded-full text-xs"
+          >
+            Cancel
+          </button>
+        )}
+
         <FaRegFileAlt/> 
         <p className='font-semibold leading-right mt-5'>{data.desc}</p>
         <div className='footer absolute bottom-0 bg-sky-900 w-full left-0'>
