@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
@@ -51,5 +52,15 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
     </div>
   );
 }
-
+Card.propTypes = {
+  data: PropTypes.shape({
+    desc: PropTypes.string.isRequired,
+    filesize: PropTypes.string.isRequired,
+    close: PropTypes.bool.isRequired,
+  }).isRequired,
+  toggleCardSelection: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  reference: PropTypes.object.isRequired,
+};
 export default Card;
