@@ -25,7 +25,7 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
           isSelected ? 'border-2 border-sky-300' : ''
         }`}
       >
-      {/* Cancel Button */}
+      {/* Cancel Button
       {isSelected && (
           <button 
             onClick={(e) => {
@@ -36,7 +36,7 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
           >
             Cancel
           </button>
-        )}
+        )} */}
 
         <FaRegFileAlt/> 
         <p className='font-semibold leading-right mt-5'>{data.desc}</p>
