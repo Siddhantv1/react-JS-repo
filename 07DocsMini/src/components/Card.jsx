@@ -3,7 +3,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-function Card({ data, setSelectedCardIndex, reference, index }) {
+function Card({ data, setSelectedCardIndex, reference, index, isSelected }) {
   
   // Function to handle download
   const handleDownload = () => {
@@ -16,7 +16,12 @@ function Card({ data, setSelectedCardIndex, reference, index }) {
 
   return (
     <div onClick={() => setSelectedCardIndex(index)} className="card-class">
-      <motion.div drag dragConstraints={reference} whileDrag={{scale: 1.1}} className='relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden'>
+      <motion.div
+       drag dragConstraints={reference}
+       whileDrag={{scale: 1.1}}
+       className={`relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden ${
+          isSelected ? 'border-2 border-sky-300' : ''
+        }`}>
         <FaRegFileAlt/> 
         <p className='font-semibold leading-right mt-5'>{data.desc}</p>
         <div className='footer absolute bottom-0 bg-sky-900 w-full left-0'>

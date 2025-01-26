@@ -24,34 +24,60 @@ function Foreground() {
     }
   ]);
 
-  const [showInput, setShowInput] = useState(false); // State to control visibility of input dialog
-  const [newCardText, setNewCardText] = useState(''); // State to hold the text for the new card
+  const [showInput, setShowInput] = useState(false);
+  const [newCardText, setNewCardText] = useState('');
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const addCard = () => {
-    if (!showInput) {
-      setShowInput(true); // Show input dialog when + is clicked
-    } else {
-      const newCard = {
-        desc: newCardText,
-        filesize: "Unknown",
-        close: false,
-      };
-      setCardsData([...cardsData, newCard]);
-      setShowInput(false); // Hide input dialog after adding card
-      setNewCardText(''); // Reset text input
+    if (!showInput && !showConfirmation) {
+      setShowInput(true);
+    } else if (showInput && !showConfirmation) {
+      setShowInput(false);
+      setShowConfirmation(true);
     }
   };
 
+  const confirmCardCreation = () => {
+    const newCard = {
+      desc: newCardText,
+      filesize: "Unknown",
+      close: false,
+    };
+    setCardsData([...cardsData, newCard]);
+    resetState();
+  };
+
+  const cancelCardCreation = () => {
+    resetState();
+  };
+
+  const resetState = () => {
+    setShowInput(false);
+    setShowConfirmation(false);
+    setNewCardText('');
+  };
+
   const deleteCard = (indexToDelete) => {
-    const updatedCardsData = cardsData.filter((_, index) => index !== indexToDelete);
-    setCardsData(updatedCardsData);
+    if (selectedCardIndex === indexToDelete) {
+      const updatedCardsData = cardsData.filter((_, index) => index !== indexToDelete);
+      setCardsData(updatedCardsData);
+      setSelectedCardIndex(null);
+    }
   };
 
   return (
     <div ref={ref} className='fixed z-[3] top-0 left-0 w-full h-full bg-sky-800/10 flex gap-5 flex-wrap p-5'>
       {cardsData.map((item, index) => (
-        <Card key={index} data={item} reference={ref} setSelectedCardIndex={setSelectedCardIndex} index={index} />
+        <Card 
+          key={index} 
+          data={item} 
+          reference={ref} 
+          setSelectedCardIndex={setSelectedCardIndex} 
+          index={index} 
+          isSelected={selectedCardIndex === index}
+        />
       ))}
+      
       {/* Input Dialog */}
       {showInput && (
         <input
@@ -63,6 +89,19 @@ function Foreground() {
           autoFocus
         />
       )}
+
+      {/* Confirmation Buttons */}
+      {showConfirmation && (
+        <div className="absolute bottom-40 right-20 flex gap-2">
+          <button onClick={confirmCardCreation} className="text-xl rounded-full w-16 h-16 bg-green-500 text-white flex items-center justify-center cursor-pointer">
+            ✔
+          </button>
+          <button onClick={cancelCardCreation} className="text-xl rounded-full w-16 h-16 bg-red-600 text-white flex items-center justify-center cursor-pointer">
+            ✖
+          </button>
+        </div>
+      )}
+
       {/* Add Button */}
       <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
         <button onClick={addCard} className="text-3xl rounded-full w-16 h-16 bg-blue-500 text-white flex items-center justify-center">
@@ -77,5 +116,6 @@ function Foreground() {
     </div>
   );
 }
+
 
 export default Foreground;
