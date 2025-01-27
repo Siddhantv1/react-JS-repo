@@ -7,11 +7,7 @@ function Foreground() {
 
   const [selectedCardIndices, setSelectedCardIndices] = useState([]);
   const [cardsData, setCardsData] = useState([
-    {
-      desc: "This is the experiment, Walrider is coming, I want my money",
-      filesize: "0.9MB",
-      close: false,
-    },
+    
     {
       desc: "Lost in the digital ether, a whisper of code awaits, a cosmic query hangs in the balance.",
       filesize: "42.42KB",
