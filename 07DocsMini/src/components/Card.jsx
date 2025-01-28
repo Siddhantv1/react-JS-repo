@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import ContentEditable from 'react-contenteditable';
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
@@ -7,6 +8,18 @@ import { motion } from "framer-motion";
 
 function Card({ data, toggleCardSelection, index, isSelected, reference }) {
   const [isDragging, setIsDragging] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleDoubleClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleBlur = (e) => {
+    setIsEditing(false);
+    // Update card data with new description
+    toggleCardSelection(index);
+  };
+
   
   // Function to handle download
   const handleDownload = (e) => {
@@ -20,15 +33,15 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
   };
 
   return (
-    <div onClick={() => !isDragging && toggleCardSelection(index)} className="card-class">
+    <div onClick={() => !isEditing && toggleCardSelection(index)} className="card-class">
       <motion.div 
         drag 
         dragConstraints={reference} 
         whileDrag={{scale: 1.1}} 
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
+        // onDragStart={() => setIsDragging(true)}
+        // onDragEnd={() => setIsDragging(false)}
         className={`relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden ${
-          isSelected && !isDragging ? 'border-2 border-sky-300' : ''
+          isSelected ? 'border-2 border-sky-300' : ''
         }`}
       >
       {/* Cancel Button
@@ -45,7 +58,23 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
         )} */}
 
         <FaRegFileAlt/> 
-        <p className='font-semibold leading-right mt-5'>{data.desc}</p>
+        <p className='font-semibold leading-right mt-5'>
+          {isEditing ? (
+              <ContentEditable
+                html={data.desc}
+                onChange={(e) => {
+                  const newDesc = e.target.value;
+                  // Update card data with new description
+                  toggleCardSelection(index, newDesc);
+                }}
+                onBlur={handleBlur}
+                tagName="span"
+                className="cursor-text"
+              />
+            ) : (
+              <span onDoubleClick={handleDoubleClick}>{data.desc}</span>
+            )}
+        </p>
         <div className='footer absolute bottom-0 bg-sky-900 w-full left-0'>
           <div className='flex items-center justify-between py-3 px-8 mb-5'>
             <div className='flex space-x-2'>
