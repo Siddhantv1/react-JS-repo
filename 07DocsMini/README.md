@@ -2,7 +2,7 @@
 
 **Create flashcards, organize and capture your ideas with one click. Perfect for students and memory champs.**
 
-## Key Features
+### Key Features
 1. **Dynamic Interace**: Cards can be dynamically arranged as per choice.
    
 2. **Downloadable**: Download your Cards as text files.
@@ -13,10 +13,10 @@
 
 5. **Responsive Design**: Fast and Smooth Design.
 
-## Tech Stack used
+### Tech Stack used
 **Frontend**: JavaScript, Vite + React
 
-## Installation
+### Installation
 1. Clone this repository:
 ```bash
 git clone https://github.com/Siddhantv1/DocsMini.git
