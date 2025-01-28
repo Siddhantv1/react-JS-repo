@@ -9,13 +9,13 @@ function Foreground() {
   const [selectedCardIndices, setSelectedCardIndices] = useState([]);
   const [cardsData, setCardsData] = useState([
     {
-      desc: "Lost in the digital ether, a whisper of code awaits, a cosmic query hangs in the balance.",
-      tags: ["code", "query"],
+      desc: "Lost in the digital ether, hope of code awaits, a cosmic query hangs in the balance.",
+      tags: ["code"],
       close: false,
     },
     {
       desc: "A digital artifact, a whisper of creation, a universe of possibilities contained within.",
-      tags: ["artifact", "creation"],
+      tags: ["creation"],
       close: true,
     }
   ]);
