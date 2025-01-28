@@ -14,7 +14,7 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
     setIsEditing(true);
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = () => {
     setIsEditing(false);
     // Update card data with new description
     toggleCardSelection(index);
@@ -100,6 +100,7 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
 Card.propTypes = {
   data: PropTypes.shape({
     desc: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
     filesize: PropTypes.string.isRequired,
     close: PropTypes.bool.isRequired,
   }).isRequired,
