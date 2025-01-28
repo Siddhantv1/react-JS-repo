@@ -7,7 +7,7 @@ import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
 function Card({ data, toggleCardSelection, index, isSelected, reference }) {
-  const [isDragging, setIsDragging] = useState(false);
+  // const [isDragging, setIsDragging] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleDoubleClick = () => {
