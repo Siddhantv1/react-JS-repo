@@ -7,21 +7,21 @@ function Foreground() {
 
   const [selectedCardIndices, setSelectedCardIndices] = useState([]);
   const [cardsData, setCardsData] = useState([
-    
     {
       desc: "Lost in the digital ether, a whisper of code awaits, a cosmic query hangs in the balance.",
-      filesize: "42.42KB",
+      tags: ["code", "query"],
       close: false,
     },
     {
       desc: "A digital artifact, a whisper of creation, a universe of possibilities contained within.",
-      filesize: "3.14159KB",
+      tags: ["artifact", "creation"],
       close: true,
     }
   ]);
 
   const [showInput, setShowInput] = useState(false);
   const [newCardText, setNewCardText] = useState('');
+  const [newCardTags, setNewCardTags] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const addCard = () => {
@@ -34,7 +34,7 @@ function Foreground() {
     if (newCardText.trim() !== '') {
       const newCard = {
         desc: newCardText,
-        filesize: "Unknown",
+        tags: newCardTags.split(',').map(tag => tag.trim()),
         close: false,
       };
       setCardsData([...cardsData, newCard]);
@@ -84,17 +84,23 @@ function Foreground() {
       {/* Input Dialog */}
       {showInput && (
         <div className="absolute bottom-40 right-20">
-          <input
+          <textarea
             type="text"
             value={newCardText}
             onChange={(e) => setNewCardText(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') confirmCardCreation();
             }}
-            placeholder="Add Note.."
+            placeholder="Add Note..."
             className="p-2 border rounded-lg"
             autoFocus
           />
+          <input
+            type="text"
+            placeholder="Tags (comma-separated)"
+            onChange={(e) => setNewCardTags(e.target.value)}
+            className="mt-2 p-2 border rounded-lg"
+            />
           <button
             onClick={cancelCardCreation}
             className="absolute top-[-10px] right-[-10px] w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center"
