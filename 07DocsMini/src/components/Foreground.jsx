@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import Card from "./Card";
-import { RiDeleteBin5Fill } from "react-icons/ri";
+import BottomNavBar from './BottomNavBar';
+//import { RiDeleteBin5Fill } from "react-icons/ri";
 
 function Foreground() {
   const ref = useRef(null);
@@ -52,11 +53,17 @@ function Foreground() {
     setNewCardText('');
   };
 
-  const toggleCardSelection = (index) => {
+  const toggleCardSelection = (index, newDesc = null) => {
     if (selectedCardIndices.includes(index)) {
       setSelectedCardIndices(prev => prev.filter(i => i !== index));
     } else {
       setSelectedCardIndices(prev => [...prev, index]);
+    }
+
+    if (newDesc){
+      setCardsData(prev => prev.map((item, idx) =>
+      idx === index ? { ...item, desc:newDesc} : item
+      ));
     }
   };
 
@@ -110,32 +117,40 @@ function Foreground() {
         </div>
       )}
 
-      {/* Delete Button */}
-      <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
+      <BottomNavBar
+        onAddClick={addCard}
+        onDeleteClick={deleteSelectedCards}
+        onCancelClick={() => setSelectedCardIndices([])}
+        showCancel={selectedCardIndices.length > 0}
+      />
+      
+      {/* Add Button */}
+      {/* <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
         <button
           onClick={addCard}
           className="text-3xl rounded-full w-16 h-16 bg-blue-500 text-white flex items-center justify-center"
         >
           +
-        </button>
-
-        <button
+        </button> */}
+        
+        {/* Delete Button */}
+        {/* <button
           onClick={deleteSelectedCards}
           className={`text-xl rounded-full w-16 h-16 ${selectedCardIndices.length > 0 ? 'bg-red-800' : 'bg-gray-600'} text-white flex items-center justify-center cursor-pointer`}
         >
           <RiDeleteBin5Fill />
         </button>
-      </div>
+      </div> */}
 
       {/* Cancel Button for Selected Cards */}
-      {selectedCardIndices.length > 0 && (
+      {/* {selectedCardIndices.length > 0 && (
         <button
           onClick={() => setSelectedCardIndices([])}
           className="fixed bottom-20 left-20 bg-blue-500 text-white px-4 py-2 rounded-full"
         >
           Cancel
         </button>
-      )}
+      )} */}
     </div>
   );
 }
