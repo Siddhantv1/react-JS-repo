@@ -1,8 +1,28 @@
-# React + Vite
+# DocsMini
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Create flashcards, organize and capture your ideas with one click. Perfect for students and memory champs.**
 
-Currently, two official plugins are available:
+## Key Features
+1. **Dynamic Interace**: Cards can be dynamically arranged as per choice.
+   
+2. **Downloadable**: Download your Cards as text files.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. **Offline mode**: Progress saved on your browser locally.
+
+4. **Categorization**: Categorize your different ideas, reminders, or revision notes under separate tags.
+
+5. **Responsive Design**: Fast and Smooth Design.
+
+## Tech Stack used
+**Frontend**: JavaScript, Vite + React
+
+## Installation
+1. Clone this repository:
+```bash
+git clone https://github.com/Siddhantv1/DocsMini.git
+```
+
+2. Navigate into project repository:
+```bash
+cd DocsMini
+```
