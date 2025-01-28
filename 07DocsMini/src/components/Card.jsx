@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
 function Card({ data, toggleCardSelection, index, isSelected, reference }) {
+  const [isDragging, setIsDragging] = useState(false);
   
   // Function to handle download
-  const handleDownload = () => {
+  const handleDownload = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const element = document.createElement("a");
     const file = new Blob([data.desc], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
@@ -16,13 +20,15 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
   };
 
   return (
-    <div className="card-class">
-      <motion.div
-        drag
-        dragConstraints={reference}
-        whileDrag={{ scale: 1.1 }}
+    <div onClick={() => !isDragging && toggleCardSelection(index)} className="card-class">
+      <motion.div 
+        drag 
+        dragConstraints={reference} 
+        whileDrag={{scale: 1.1}} 
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
         className={`relative w-60 h-72 rounded-[50px] bg-zinc-900/90 text-white px-8 py-10 overflow-hidden ${
-          isSelected ? 'border-2 border-sky-300' : ''
+          isSelected && !isDragging ? 'border-2 border-sky-300' : ''
         }`}
       >
       {/* Cancel Button
@@ -54,11 +60,11 @@ function Card({ data, toggleCardSelection, index, isSelected, reference }) {
           </div>
         </div>
       </motion.div>
-      <button
+      {/* <button
         onClick={() => toggleCardSelection(index)}
         className={`absolute top-2 left-2 bg-${isSelected ? 'blue' : 'gray'}-500 text-white px-2 py-1 rounded-full text-xs`}>
         {isSelected ? 'Unselect' : 'Select'}
-      </button>
+      </button> */}
     </div>
   );
 }
