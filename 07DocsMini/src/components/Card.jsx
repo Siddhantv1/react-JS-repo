@@ -10,11 +10,11 @@ function Card({ data, toggleCardSelection, index, isSelected, reference, onEdit 
   // const [isDragging, setIsDragging] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleBlur = () => {
-    setIsEditing(false);
-    // Update card data with new description
-    toggleCardSelection(index);
-  };
+  // const handleBlur = () => {
+  //   setIsEditing(false);
+  //   // Update card data with new description
+  //   toggleCardSelection(index);
+  // };
 
   
   // Function to handle download
