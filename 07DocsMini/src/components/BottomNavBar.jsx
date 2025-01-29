@@ -1,5 +1,5 @@
 // BottomNavBar.jsx
-import React from 'react';
+import PropTypes from 'prop-types';
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
 function BottomNavBar({ onAddClick, onDeleteClick, onCancelClick, showCancel }) {
@@ -19,5 +19,11 @@ function BottomNavBar({ onAddClick, onDeleteClick, onCancelClick, showCancel }) 
     </div>
   );
 }
+BottomNavBar.propTypes = {
+  onAddClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func,
+  showCancel: PropTypes.bool
+};
 
 export default BottomNavBar;
