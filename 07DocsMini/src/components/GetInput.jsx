@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBlackTie, FaTimesCircle } from "react-icons/fa";
-import { IoBagCheck } from 'react-icons/io5';
+import {FaTimesCircle } from "react-icons/fa";
 import Background from './Background';
 
 const GetInput = ({ onClose, onSubmit, initialText, initialTag }) => {
