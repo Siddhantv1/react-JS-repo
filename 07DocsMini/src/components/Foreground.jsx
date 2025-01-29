@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import Card from "./Card";
 import BottomNavBar from './BottomNavBar';
+import GetInput from './GetInput';
 //import { RiDeleteBin5Fill } from "react-icons/ri";
 
 function Foreground() {
@@ -16,36 +17,46 @@ function Foreground() {
     {
       desc: "A digital artifact, a whisper of creation, a universe of possibilities contained within.",
       tags: ["creation"],
-      close: true,
+      close: false,
     }
   ]);
 
   const [showInput, setShowInput] = useState(false);
+  const [editingCardIndex, setEditingCardIndex] = useState(null);
   const [newCardText, setNewCardText] = useState('');
-  const [newCardTags, setNewCardTags] = useState('');
+  //const [newCardTags, setNewCardTags] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const addCard = () => {
-    if (!showInput && !showConfirmation) {
       setShowInput(true);
+      setEditingCardIndex(null);
+  };
+
+  const confirmCardCreation = (newDesc, newTag) => {
+    if (newDesc.trim() !== '') {
+      let newCardData;
+      if (editingCardIndex === null) {
+        newCardData = {
+          desc: newDesc,
+          tags: newTag ? [newTag] : [],
+          close: false,
+        };
+        setCardsData([...cardsData, newCardData]);
+      } else {
+        newCardData = cardsData[editingCardIndex];
+        newCardData.desc = newDesc;
+        newCardData.tags = newTag ? [newTag] : [];
+        setCardsData(prev => prev.map((item, index) => 
+          index === editingCardIndex ? newCardData : item
+        ));
+      }
+      setShowInput(false);
     }
   };
 
-  const confirmCardCreation = () => {
-    if (newCardText.trim() !== '') {
-      const newCard = {
-        desc: newCardText,
-        tags: newCardTags.split(',').map(tag => tag.trim()),
-        close: false,
-      };
-      setCardsData([...cardsData, newCard]);
-      resetState();
-    }
-  };
-
-  const cancelCardCreation = () => {
-    resetState();
-  };
+ // const cancelCardCreation = () => {
+   // resetState();
+ // };
 
   const resetState = () => {
     setShowInput(false);
@@ -76,7 +87,7 @@ function Foreground() {
   };
 
   return (
-    <div ref={ref} className='fixed z-[3] top-0 left-0 w-full h-full bg-sky-800/10 flex gap-5 flex-wrap p-5'>
+    <div ref={ref}className='fixed z-[3] top-0 left-0 w-full h-full bg-sky-800/10 flex gap-5 flex-wrap p-5'>
       {cardsData.map((item, index) => (
         <Card
           key={index}
@@ -85,36 +96,21 @@ function Foreground() {
           toggleCardSelection={toggleCardSelection}
           index={index}
           isSelected={selectedCardIndices.includes(index)}
+          onEdit={() => {
+            setShowInput(true);
+            setEditingCardIndex(index);
+          }}
         />
       ))}
 
       {/* Input Dialog */}
       {showInput && (
-        <div className="absolute bottom-40 right-20">
-          <textarea
-            type="text"
-            value={newCardText}
-            onChange={(e) => setNewCardText(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') confirmCardCreation();
-            }}
-            placeholder="Add Note..."
-            className="p-2 border rounded-lg"
-            autoFocus
-          />
-          <input
-            type="text"
-            placeholder="Tags (comma-separated)"
-            onChange={(e) => setNewCardTags(e.target.value)}
-            className="mt-2 p-2 border rounded-lg"
-            />
-          <button
-            onClick={cancelCardCreation}
-            className="absolute top-[-10px] right-[-10px] w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center"
-          >
-            ✖
-          </button>
-        </div>
+        <GetInput
+          onClose={() => setShowInput(false)}
+          onSubmit={(desc, tag) => confirmCardCreation(desc, tag)}
+          initialText={editingCardIndex !== null ? cardsData[editingCardIndex].desc : ''}
+          initialTag={editingCardIndex !== null ? cardsData[editingCardIndex].tags[0] : ''}
+        />
       )}
 
       <BottomNavBar
