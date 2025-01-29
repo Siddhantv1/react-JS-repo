@@ -16,6 +16,7 @@
 }
 
 
-::selection{
-  color: rgb(255, 196, 0);
+::selection {
+  background-color: #1f3438;  /* Change this to the background color you want */
+  color: rgb(0, 243, 211);               /* Text color when selected */
 }
