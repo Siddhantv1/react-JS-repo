@@ -41,7 +41,7 @@ const GetInput = ({ onClose, onSubmit, initialText, initialTag }) => {
           <textarea
             rows={5}
             placeholder='Write something...'
-            className="w-full border bg-stone-800 text-white border-gray-900 rounded-xl p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-sky-400"
+            className="w-full border bg-stone-800 text-white border-gray-900 rounded-xl p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-sky-400 resize-none"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
             required
