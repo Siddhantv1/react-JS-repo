@@ -19,7 +19,7 @@
 ### Installation
 1. Clone this repository:
 ```bash
-git clone https://github.com/Siddhantv1/DocsMini.git
+git clone https://github.com/Siddhantv1/react-JS-repo.git
 ```
 
 2. Navigate into project repository:
