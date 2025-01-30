@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {FaTimesCircle } from "react-icons/fa";
-import Background from './Background';
+// import Background from './Background';
 
 const GetInput = ({ onClose, onSubmit, initialText, initialTag }) => {
   const [desc, setDesc] = React.useState(initialText || '');
