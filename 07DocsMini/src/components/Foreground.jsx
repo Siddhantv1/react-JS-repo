@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import Card from "./Card";
 import BottomNavBar from './BottomNavBar';
+import ConfirmationDialog from './ConfirmationDialog';
 import GetInput from './GetInput';
 //import { RiDeleteBin5Fill } from "react-icons/ri";
 
@@ -23,7 +24,7 @@ function Foreground() {
 
   const [showInput, setShowInput] = useState(false);
   const [editingCardIndex, setEditingCardIndex] = useState(null);
-  const [newCardText, setNewCardText] = useState('');
+  //const [newCardText, setNewCardText] = useState('');
   //const [newCardTags, setNewCardTags] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -58,11 +59,11 @@ function Foreground() {
    // resetState();
  // };
 
-  const resetState = () => {
-    setShowInput(false);
-    setShowConfirmation(false);
-    setNewCardText('');
-  };
+  // const resetState = () => {
+  //   setShowInput(false);
+  //   setShowConfirmation(false);
+  //   setNewCardText('');
+  // };
 
   const toggleCardSelection = (index, newDesc = null) => {
     if (selectedCardIndices.includes(index)) {
@@ -80,10 +81,15 @@ function Foreground() {
 
   const deleteSelectedCards = () => {
     if (selectedCardIndices.length > 0) {
-      const updatedCardsData = cardsData.filter((_, index) => !selectedCardIndices.includes(index));
-      setCardsData(updatedCardsData);
-      setSelectedCardIndices([]);
+      setShowConfirmation(true);
     }
+  };
+
+  const handleConfirmDelete = () => {
+    const updatedCardsData = cardsData.filter((_, index) => !selectedCardIndices.includes(index));
+    setCardsData(updatedCardsData);
+    setSelectedCardIndices([]);
+    setShowConfirmation(false);
   };
 
   return (
@@ -119,7 +125,13 @@ function Foreground() {
         onCancelClick={() => setSelectedCardIndices([])}
         showCancel={selectedCardIndices.length > 0}
       />
-      
+      {showConfirmation && (
+        <ConfirmationDialog
+          isOpen={showConfirmation}
+          onClose={() => setShowConfirmation(false)}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
       {/* Add Button */}
       {/* <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
         <button
