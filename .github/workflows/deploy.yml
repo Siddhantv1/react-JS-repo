@@ -1,0 +1,19 @@
+name: Deploy
+on:
+  push:
+    branches: [main1]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+        working-directory: ./07DocsMini
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./07DocsMini/dist
