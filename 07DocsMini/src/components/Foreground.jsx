@@ -11,13 +11,13 @@ function Foreground() {
   const [selectedCardIndices, setSelectedCardIndices] = useState([]);
   const [cardsData, setCardsData] = useState([
     {
-      desc: "Lost in the digital ether, hope of code awaits, a cosmic query hangs in the balance.",
-      tags: ["code"],
+      desc: "Create cards using the ➕ button, select one by clicking it. Edit using the pencil button.",
+      tags: ["creation"],
       close: false,
     },
     {
-      desc: "A digital artifact, a whisper of creation, a universe of possibilities contained within.",
-      tags: ["creation"],
+      desc: "Dynamically arrange cards anywhere on the screen, Download them as txt files.",
+      tags: ["use tags"],
       close: false,
     }
   ]);
