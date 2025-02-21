@@ -106,7 +106,16 @@ function Foreground() {
 
   const handleConfirmDelete = () => {
     const updatedCardsData = cardsData.filter((_, index) => !selectedCardIndices.includes(index));
-    setCardsData(updatedCardsData);
+    
+    // Update positions smoothly
+    setCardsData(prev => {
+      const newCards = [...prev];
+      selectedCardIndices.forEach(index => {
+        newCards.splice(index, 1);
+      });
+      return newCards;
+    });
+    
     setSelectedCardIndices([]);
     setShowConfirmation(false);
   };
