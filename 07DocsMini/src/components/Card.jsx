@@ -48,6 +48,12 @@ function Card({ data, toggleCardSelection, index, isSelected, reference, onEdit 
         }`}
         layout
          transition={{ type: 'inertia', stiffness: 300, damping: 30 }}
+         onDragStart={(event, info) => {
+          event.preventDefault();
+          event.stopPropagation();
+        }}
+           // Prevents inertia-based unwanted shifts
+          dragElastic={0.9}
       >
       {/* Cancel Button
       {isSelected && (
