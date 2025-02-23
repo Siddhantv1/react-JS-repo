@@ -105,20 +105,11 @@ function Foreground() {
   };
 
   const handleConfirmDelete = () => {
-    const updatedCardsData = cardsData.filter((_, index) => !selectedCardIndices.includes(index));
-    
-    // Update positions smoothly
-    setCardsData(prev => {
-      const newCards = [...prev];
-      selectedCardIndices.forEach(index => {
-        newCards.splice(index, 1);
-      });
-      return newCards;
-    });
-    
+    setCardsData(prev => prev.filter((_, index) => !selectedCardIndices.includes(index)));
     setSelectedCardIndices([]);
     setShowConfirmation(false);
   };
+  
 
   return (
     <div ref={ref}className='fixed z-[3] top-0 left-0 w-full h-full bg-sky-800/10 flex gap-5 flex-wrap p-5'>
