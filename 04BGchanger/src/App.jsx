@@ -12,7 +12,7 @@ function App() {
     >
       {/* dynamic nav bar divs */}
       <div className="fixed flex flex-wrap justify-center botton-12 inset-x-0 px-2"> 
-      <div className='flex flex-wrap justify-center gap-3 shadow-lg bg-white px-3 py-2 rounded-3xl'>
+      <div className='flex flex-wrap justify-center gap-3 shadow-lg bg-white px-3 py-2 rounded-2xl'>
 
 
       {/* red color */}
